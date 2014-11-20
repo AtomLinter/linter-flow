@@ -1,0 +1,22 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Toggle linter-flow'
+      'command': 'linter-flow:toggle'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'linter-flow'
+      'submenu': [
+        {
+          'label': 'Toggle'
+          'command': 'linter-flow:toggle'
+        }
+      ]
+    ]
+  }
+]
