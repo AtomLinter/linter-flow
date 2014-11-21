@@ -1,5 +1,13 @@
 # linter-flow package
 
-A short description of your package.
+linter-flow implements a [linter](https://github.com/AtomLinter/Linter) plugin
+for Facebook's Flow JS typechecker.
 
-![A screenshot of your spankin' package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+### How to use it
+
+1. Install the package
+1. Create an empty `.flowconfig` file at the root of your repo
+1. Open a JS file
+
+You should start seeing lint errors related to types - try opening the Flow
+example projects in Atom
