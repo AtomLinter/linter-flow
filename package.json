@@ -5,7 +5,7 @@
   "activationEvents": [],
   "version": "0.0.1",
   "description": "Lint JavaScript on the fly, using Flow",
-  "repository": "https://github.com/paulcbetts/linter-flow.git",
+  "repository": "https://github.com/AtomLinter/linter-flow.git",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
