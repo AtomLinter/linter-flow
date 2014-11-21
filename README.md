@@ -1,7 +1,7 @@
 # linter-flow package
 
 linter-flow implements a [linter](https://github.com/AtomLinter/Linter) plugin
-for Facebook's Flow JS typechecker.
+for Facebook's [Flow JS typechecker](http://flowtype.org/).
 
 ### How to use it
 
