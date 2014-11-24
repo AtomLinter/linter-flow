@@ -39,11 +39,32 @@ class LinterFlow extends Linter
       realMessages = []
       _.each info.errors, (msg) ->
 
+        # NB: messages are often of the form "X is bad", "because", "some other type"
+        # Therefore, we want to categorize the first message as the actual error, and
+        # subsequent errors as warnings (so people can find the related type quickly),
+        # but also have a good error message in the real message
         first = true
         _.each msg.message, (item) ->
-          realMessages.push(_.extend(item, error: first is true, warning: first is false))
+          if first
+            toPush = _.extend item,
+              error: true
+              warning: false
+              descr: _.map(msg.message, (x) -> x.descr.replace("\n", " ")).join(' ')
+
+            last = _.last(msg.message)
+            unless msg.message.length < 2
+              toPush.descr += "(#{last.path.replace(atom.project.path, '.')}:#{last.line})"
+
+            console.log "Message: #{toPush.message}"
+            realMessages.push(toPush)
+            first = false
+            return
+
+          realMessages.push(_.extend(item, error: false, warning: true))
           first = false
 
+      # NB: Sometimes, the type definition for the 'some other type' can be in
+      # a separate file
       realMessages = _.filter realMessages, (x) ->
         return true if x.path is null
         return (path.basename(x.path) is path.basename(filePath))
