@@ -25,7 +25,12 @@ class LinterFlow extends Linter
       return
 
     str = ''
-    child = spawn @flowPath, ['status', '--json', path.resolve(atom.project.path)]
+    file = (atom.workspace.getActiveEditor()).getPath()
+    if file.indexOf("/") is -1 # windows
+      path = file.substring(0, file.lastIndexOf("\\"))
+    else # unix
+      path = file.substring(0, file.lastIndexOf("/"))
+    child = spawn @flowPath, ['status', '--json', path]
     child.stdout.on 'data', (x) -> str += x
     child.stderr.on 'data', (x) -> str += x
 
