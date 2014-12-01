@@ -88,8 +88,11 @@ class LinterFlow extends Linter
       return
 
   findFlowInPath: ->
-    pathItems = process.env.PATH.split(/[;:]/)
-    _.find(pathItems, (x) -> fs.existsSync(path.join(x, 'flow')))
+    pathItems = process.env.PATH.split /[;:]/
+
+    _.find pathItems, (x) ->
+      return false unless x and x.length > 1
+      fs.existsSync(path.join(x, 'flow'))
 
   constructor: (editor) ->
     super(editor)
