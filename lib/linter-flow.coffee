@@ -100,19 +100,15 @@ class LinterFlow extends Linter
     @flowPath = @findFlowInPath()
 
     @flowEnabled = true
-    console.log @flowEnabled
     @flowEnabled &= atom.project.path and fs.existsSync(atom.project.path)
-    console.log @flowEnabled
     @flowEnabled &= fs.existsSync(path.join(atom.project.path, '.flowconfig'))
-    console.log @flowEnabled
-    @flowEnabled &= !(@flowPath is null)
-    console.log @flowEnabled
-
-    @flowPath = path.join(@flowPath, 'flow')
+    @flowEnabled &= @flowPath?
 
     unless @flowEnabled
       console.log 'Flow is disabled, exiting!'
       return
+
+    @flowPath = path.join(@flowPath, 'flow')
 
     flowServer = spawn(@flowPath, ['start', '--all', '--module', 'node', path.resolve(atom.project.path)])
     flowServer.on 'close', (code) => @flowEnabled &= (code is 0)
