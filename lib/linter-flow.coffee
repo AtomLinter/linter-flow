@@ -1,6 +1,5 @@
 linterPath = atom.packages.getLoadedPackage('linter').path
 Linter = require "#{linterPath}/lib/linter"
-findFile = require "#{linterPath}/lib/util"
 
 path = require "path"
 fs = require 'fs'
@@ -55,7 +54,7 @@ class LinterFlow extends Linter
 
             last = _.last(msg.message)
             unless msg.message.length < 2
-              toPush.descr += "(#{last.path.replace(atom.project.path, '.')}:#{last.line})"
+              toPush.descr += "(#{last.path.replace(atom.project.getPath(), '.')}:#{last.line})"
 
             console.log "Message: #{toPush.message}"
             realMessages.push(toPush)
@@ -102,8 +101,8 @@ class LinterFlow extends Linter
     @flowPath = @findFlowInPath()
 
     @flowEnabled = true
-    @flowEnabled &= atom.project.path and fs.existsSync(atom.project.path)
-    @flowEnabled &= fs.existsSync(path.join(atom.project.path, '.flowconfig'))
+    @flowEnabled &= atom.project.getPath() and fs.existsSync(atom.project.getPath())
+    @flowEnabled &= fs.existsSync(path.join(atom.project.getPath(), '.flowconfig'))
     @flowEnabled &= @flowPath?
 
     unless @flowEnabled
@@ -112,11 +111,11 @@ class LinterFlow extends Linter
 
     @flowPath = path.join(@flowPath, 'flow')
 
-    flowServer = spawn(@flowPath, ['start', '--all', '--module', 'node', path.resolve(atom.project.path)])
-    flowServer.on 'close', (code) => @flowEnabled &= (code is 0)
+    flowServer = spawn(@flowPath, ['start', '--all', '--module', 'node', path.resolve(atom.project.getPath())])
+    flowServer.on 'close', (code) => @flowEnabled &= (code is 2)
 
   destroy: ->
-    spawn(@flowPath, ['--stop', path.resolve(atom.project.path)])
+    spawn(@flowPath, ['--stop', path.resolve(atom.project.getPath())])
     console.log "die"
 
 module.exports = LinterFlow
