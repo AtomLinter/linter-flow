@@ -17,5 +17,6 @@ example projects in Atom
 
 ### Troubleshooting
 
-###### OS X: No lint errors are shown?
-> Try launching Atom from the terminal. Alternative workarounds here: [atom/atom-shell#550](https://github.com/atom/atom-shell/issues/550)
+##### OS X: No lint errors are shown?
+* **Possible cause:** The PATH to your Flow executable cannot be found.
+* **Solution:** Try launching Atom from the terminal. Alternative workarounds here: [atom/atom-shell#550](https://github.com/atom/atom-shell/issues/550)
