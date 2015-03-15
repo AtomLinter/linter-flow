@@ -115,7 +115,8 @@ class LinterFlow extends Linter
     flowServer.on 'close', (code) => @flowEnabled &= (code is 2)
 
   destroy: ->
-    spawn(@flowPath, ['--stop', path.resolve(atom.project.getPath())])
-    console.log "die"
+    if @flowEnabled
+      spawn(@flowPath, ['--stop', path.resolve(atom.project.getPath())])
+      console.log "die"
 
 module.exports = LinterFlow
