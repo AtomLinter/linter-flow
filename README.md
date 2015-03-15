@@ -7,6 +7,7 @@ for Facebook's [Flow JS typechecker](http://flowtype.org/).
 
 ### How to use it
 
+1. [Install Flow](http://flowtype.org/docs/getting-started.html#installing-flow)
 1. Install the package
 1. Create an empty `.flowconfig` file at the root of your repo
 1. Open a JS file
