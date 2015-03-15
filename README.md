@@ -14,3 +14,8 @@ for Facebook's [Flow JS typechecker](http://flowtype.org/).
 
 You should start seeing lint errors related to types - try opening the Flow
 example projects in Atom
+
+### Troubleshooting
+
+###### OS X: No lint errors are shown?
+> Try launching Atom from the terminal. Alternative workarounds here: [atom/atom-shell#550](https://github.com/atom/atom-shell/issues/550)
