@@ -10,7 +10,7 @@ _ = require 'underscore-plus'
 class LinterFlow extends Linter
   # The syntax that the linter handles. May be a string or
   # list/tuple of strings. Names should be all lowercase.
-  @syntax: ['source.js']
+  @syntax: ['source.js', 'source.js.jsx']
 
   linterName: 'flow'
 
