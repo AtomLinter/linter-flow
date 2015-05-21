@@ -2,7 +2,6 @@
   "name": "linter-flow",
   "main": "./lib/init",
   "linter-package": true,
-  "activationEvents": [],
   "version": "0.1.4",
   "description": "Lint JavaScript on the fly, using Flow",
   "repository": "https://github.com/AtomLinter/linter-flow.git",
