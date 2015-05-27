@@ -2,7 +2,7 @@
   "name": "linter-flow",
   "main": "./lib/init",
   "linter-package": true,
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Lint JavaScript on the fly, using Flow",
   "repository": "https://github.com/AtomLinter/linter-flow.git",
   "license": "MIT",
