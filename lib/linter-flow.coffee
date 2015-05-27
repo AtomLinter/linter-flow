@@ -24,7 +24,7 @@ class LinterFlow extends Linter
       return
 
     str = ''
-    file = (atom.workspace.getActiveEditor()).getPath()
+    file = (atom.workspace.getActiveTextEditor()).getPath()
     file_path = path.dirname(file)
     child = spawn @flowPath, ['status', '--json', file_path]
     child.stdout.on 'data', (x) -> str += x
@@ -54,7 +54,7 @@ class LinterFlow extends Linter
 
             last = _.last(msg.message)
             unless msg.message.length < 2
-              toPush.descr += "(#{last.path.replace(atom.project.getPath(), '.')}:#{last.line})"
+              toPush.descr += "(#{last.path.replace(atom.project.getPaths()[0], '.')}:#{last.line})"
 
             console.log "Message: #{toPush.message}"
             realMessages.push(toPush)
@@ -101,8 +101,8 @@ class LinterFlow extends Linter
     @flowPath = @findFlowInPath()
 
     @flowEnabled = true
-    @flowEnabled &= atom.project.getPath() and fs.existsSync(atom.project.getPath())
-    @flowEnabled &= fs.existsSync(path.join(atom.project.getPath(), '.flowconfig'))
+    @flowEnabled &= atom.project.getPaths()[0] and fs.existsSync(atom.project.getPaths()[0])
+    @flowEnabled &= fs.existsSync(path.join(atom.project.getPaths()[0], '.flowconfig'))
     @flowEnabled &= @flowPath?
 
     unless @flowEnabled
@@ -111,12 +111,12 @@ class LinterFlow extends Linter
 
     @flowPath = path.join(@flowPath, 'flow')
 
-    flowServer = spawn(@flowPath, ['start', '--all', '--module', 'node', path.resolve(atom.project.getPath())])
+    flowServer = spawn(@flowPath, ['start', '--all', '--module', 'node', path.resolve(atom.project.getPaths()[0])])
     flowServer.on 'close', (code) => @flowEnabled &= (code is 2)
 
   destroy: ->
     if @flowEnabled
-      spawn(@flowPath, ['--stop', path.resolve(atom.project.getPath())])
+      spawn(@flowPath, ['--stop', path.resolve(atom.project.getPaths()[0])])
       console.log "die"
 
 module.exports = LinterFlow
