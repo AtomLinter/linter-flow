@@ -111,8 +111,8 @@ class LinterFlow extends Linter
 
     @flowPath = path.join(@flowPath, 'flow')
 
-    flowServer = spawn(@flowPath, ['start', '--all', '--module', 'node', path.resolve(atom.project.getPaths()[0])])
-    flowServer.on 'close', (code) => @flowEnabled &= (code is 2)
+    flowServer = spawn(@flowPath, ['start', path.resolve(atom.project.getPaths()[0])])
+    flowServer.on 'close', (code) => @flowEnabled &= (code is 0)
 
   destroy: ->
     if @flowEnabled
