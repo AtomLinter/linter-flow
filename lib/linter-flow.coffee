@@ -31,6 +31,15 @@ class LinterFlow extends Linter
     child.stderr.on 'data', (x) -> str += x
 
     child.stdout.on 'close', (code) =>
+
+      if str.indexOf('Could not find a .flowconfig') >= 0
+        callback([])
+        return
+
+      if str and str.indexOf('{') > 0
+        # strip initial messages (eg. "server initializing...")
+        str = str.substr(str.indexOf('{'))
+
       console.log str
       info = JSON.parse(str)
       if info.passed
