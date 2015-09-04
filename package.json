@@ -1,6 +1,6 @@
 {
   "name": "linter-flow",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Lint JavaScript on the fly, using Flow",
   "activationCommands": [],
   "main": "./build/index.js",
