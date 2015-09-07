@@ -62,13 +62,13 @@ module.exports =
           }
       }
   , activate(){
-      console.log('activating linter-flow-plus')
+      console.log('activating linter-flow')
 
       // getting custom value
-      cmdString = atom.config.get('linter-flow-plus.pathToFlowExecutable')
+      cmdString = atom.config.get('linter-flow.pathToFlowExecutable')
     }
   , deactivate(){
-      console.log('deactivating linter-flow-plus')
+      console.log('deactivating linter-flow')
     }
   , provideLinter(){
       const provider =
@@ -122,7 +122,7 @@ module.exports =
               console.error(err)
               return [
                 { type: 'warning'
-                , html: 'linter-flow-plus : Error Linting, check the console for details'
+                , html: 'linter-flow : Error Linting, check the console for details'
                 , filePath: filePath
                 , range: [[0, 0], [0, 1]]
                 }
