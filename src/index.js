@@ -65,7 +65,7 @@ module.exports =
       console.log('activating linter-flow')
 
       // getting custom value
-      cmdString = atom.config.get('linter-flow.pathToFlowExecutable')
+      cmdString = atom.config.get('linter-flow.pathToFlowExecutable') || 'flow'
     }
   , deactivate(){
       console.log('deactivating linter-flow')
