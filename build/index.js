@@ -66,13 +66,13 @@ module.exports = { config: { pathToFlowExecutable: { type: 'string',
     }
   },
   activate: function activate() {
-    console.log('activating linter-flow-plus');
+    console.log('activating linter-flow');
 
     // getting custom value
-    cmdString = atom.config.get('linter-flow-plus.pathToFlowExecutable');
+    cmdString = atom.config.get('linter-flow.pathToFlowExecutable') || 'flow';
   },
   deactivate: function deactivate() {
-    console.log('deactivating linter-flow-plus');
+    console.log('deactivating linter-flow');
   },
   provideLinter: function provideLinter() {
     var provider = { grammarScopes: ['source.js', 'source.js.jsx', 'source.babel', 'source.js-semantic', 'source.es6'],
@@ -120,7 +120,7 @@ module.exports = { config: { pathToFlowExecutable: { type: 'string',
         })['catch'](function (err) {
           console.error(err);
           return [{ type: 'warning',
-            html: 'linter-flow-plus : Error Linting, check the console for details',
+            html: 'linter-flow : Error Linting, check the console for details',
             filePath: filePath,
             range: [[0, 0], [0, 1]]
           }];
