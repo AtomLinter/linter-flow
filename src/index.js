@@ -74,6 +74,7 @@ module.exports =
       const provider =
         { grammarScopes: ['source.js', 'source.js.jsx', 'source.babel', 'source.js-semantic', 'source.es6']
         , scope: 'file'
+        , name: 'flow'
         , lintOnFly: true
         , lint(TextEditor){
             const filePath = TextEditor.getPath()
