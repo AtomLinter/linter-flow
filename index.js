@@ -12,10 +12,6 @@ class LinterFlow {
       type: 'string',
       default: 'flow',
     },
-    testRuleTwo: {
-      type: 'boolean',
-      default: false,
-    },
   }
 
   activate() {
