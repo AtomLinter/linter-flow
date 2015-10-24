@@ -2,36 +2,31 @@
   "name": "linter-flow",
   "version": "3.1.3",
   "description": "Lint JavaScript on the fly, using Flow",
+  "repository": "https://github.com/AtomLinter/linter-flow.git",
+  "homepage": "https://github.com/AtomLinter/linter-flow",
+  "author": "Naman Goel",
+  "license": "MIT",
   "activationCommands": [],
-  "main": "./build/index.js",
-  "scripts": {
-    "build": "babel src --out-dir build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/AtomLinter/linter-flow.git"
-  },
   "keywords": [
     "linter",
     "atom"
   ],
-  "author": "Naman Goel",
-  "license": "MIT",
   "engines": {
-    "atom": ">0.50.0"
+    "atom": ">=1.0.0"
   },
-  "bugs": {
-    "url": "https://github.com/AtomLinter/linter-flow/issues"
+  "main": "index.js",
+  "dependencies": {
+    "atom-linter": "^3.0.0",
+    "atom-package-deps": "^2.0.2"
   },
-  "homepage": "https://github.com/AtomLinter/linter-flow",
+  "package-deps": [
+    "linter"
+  ],
   "providedServices": {
     "linter": {
       "versions": {
         "1.0.0": "provideLinter"
       }
     }
-  },
-  "devDependencies": {
-    "babel": "^5.8.23"
   }
 }
