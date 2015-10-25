@@ -8,7 +8,7 @@ import servers from './lib/servers.js';
 
 class LinterFlow {
   config = {
-    pathToFlow: {
+    executablePath: {
       type: 'string',
       default: 'flow',
     },
@@ -18,7 +18,7 @@ class LinterFlow {
     require('atom-package-deps').install('linter-flow');
 
     this.subscriptions = new CompositeDisposable();
-    this.subscriptions.add(atom.config.observe('linter-flow.pathToFlow', (pathToFlow) => {
+    this.subscriptions.add(atom.config.observe('linter-flow.executablePath', (pathToFlow) => {
       this.pathToFlow = pathToFlow;
     }));
   }
@@ -44,7 +44,7 @@ class LinterFlow {
       lintOnFly: true,
       lint: (TextEditor) => {
         const filePath = TextEditor.getPath();
-        const fileText = TextEditor.buffer && TextEditor.buffer.cachedText;
+        const fileText = TextEditor.buffer.cachedText;
 
         // Is flow enabled for current file ?
         if (fileText.indexOf('@flow') === -1) {
