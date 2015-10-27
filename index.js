@@ -11,6 +11,12 @@ class LinterFlow {
     executablePath: {
       type: 'string',
       default: 'flow',
+      description: 'Absolute path to the Flow executable on your system.',
+    },
+    enableAll: {
+      type: 'boolean',
+      default: false,
+      description: 'Typecheck all files, not just @flow',
     },
   }
 
@@ -20,6 +26,9 @@ class LinterFlow {
     this.subscriptions = new CompositeDisposable();
     this.subscriptions.add(atom.config.observe('linter-flow.executablePath', (pathToFlow) => {
       this.pathToFlow = pathToFlow;
+    }));
+    this.subscriptions.add(atom.config.observe('linter-flow.enableAll', (enableAll) => {
+      this.enableAll = enableAll;
     }));
   }
 
@@ -47,7 +56,7 @@ class LinterFlow {
         const fileText = TextEditor.buffer.cachedText;
 
         // Is flow enabled for current file ?
-        if (fileText.indexOf('@flow') === -1) {
+        if (fileText.indexOf('@flow') === -1 && !this.enableAll) {
           return [];
         }
 
@@ -58,9 +67,14 @@ class LinterFlow {
           return [];
         }
 
+        const args = ['check', '--json', filePath];
+        if (this.enableAll) {
+          args.push('--all');
+        }
+
         return servers.start(this.pathToFlow, flowConfig).then(() => {
           return helpers
-            .exec(this.pathToFlow, ['--json'], { cwd: path.dirname(filePath) })
+            .exec(this.pathToFlow, args, { cwd: path.dirname(filePath) })
             .then(JSON.parse)
             .then(handleData);
         });

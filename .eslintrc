@@ -6,10 +6,13 @@
   ],
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "globals": {
-    "atom": true
+    "atom": true,
+    "expect": true,
+    "waitsForPromise": true
   },
   "rules": {
     "no-console": 0
