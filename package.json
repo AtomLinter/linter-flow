@@ -15,9 +15,12 @@
     "atom": ">=1.0.0"
   },
   "main": "index.js",
+  "scripts": {
+    "test": "apm test"
+  },
   "dependencies": {
-    "atom-linter": "^3.0.0",
-    "atom-package-deps": "^2.0.2"
+    "atom-linter": "^3.3.0",
+    "atom-package-deps": "^2.1.3"
   },
   "package-deps": [
     "linter"
