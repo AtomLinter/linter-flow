@@ -1,7 +1,7 @@
 'use babel';
 
 describe('Flow provider for Linter', () => {
-  const lint = require('../index.js').provideLinter().lint;
+  const lint = require('../lib/index.js').provideLinter().lint;
 
   beforeEach(() => {
     waitsForPromise(() => {

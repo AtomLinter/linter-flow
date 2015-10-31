@@ -7,14 +7,10 @@
   "author": "Naman Goel",
   "license": "MIT",
   "activationCommands": [],
-  "keywords": [
-    "linter",
-    "atom"
-  ],
   "engines": {
     "atom": ">=1.0.0"
   },
-  "main": "index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "apm test"
   },
