@@ -1,0 +1,20 @@
+{
+  "extends": "airbnb/base",
+  "parser": "babel-eslint",
+  "plugins": [
+    "babel"
+  ],
+  "env": {
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "globals": {
+    "atom": true,
+    "expect": true,
+    "waitsForPromise": true
+  },
+  "rules": {
+    "no-console": 0
+  }
+}
