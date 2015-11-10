@@ -1,0 +1,13 @@
+[ignore]
+.*/node_modules/.*
+.*/spec/.*
+.*/declarations/.*
+
+[include]
+
+[libs]
+.*/declarations/modules\.js
+
+[options]
+unsafe.enable_getters_and_setters=true
+esproposal.decorators=ignore
