@@ -8,6 +8,10 @@ notifications:
 env:
   - APM_TEST_PACKAGES="linter"
 
+before_install:
+  - "ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)'"
+  - "brew install flow"
+
 script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
 
 git:
