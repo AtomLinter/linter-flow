@@ -1,6 +1,6 @@
 {
   "name": "linter-flow",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Lint JavaScript on the fly, using Flow",
   "repository": "https://github.com/AtomLinter/linter-flow.git",
   "homepage": "https://github.com/AtomLinter/linter-flow",
