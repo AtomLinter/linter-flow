@@ -35,12 +35,12 @@ describe('Flow provider for Linter', () => {
         return lint(editor).then(messages => {
           expect(messages.length).toEqual(1);
           expect(messages[0].type).toEqual('Error');
-          expect(messages[0].text).toEqual('function call Error: number This type is incompatible with string');
+          expect(messages[0].text).toEqual('number This type is incompatible with string');
           expect(messages[0].filePath).toMatch(/.+Arrays\.js$/);
-          expect(messages[0].trace.length).toEqual(4);
+          expect(messages[0].trace.length).toEqual(2);
           expect(messages[0].range).toEqual({
-            start: { row: 9, column: 0 },
-            end: { row: 9, column: 9 },
+            start: { row: 9, column: 4 },
+            end: { row: 9, column: 8 },
           });
         });
       });
