@@ -27,6 +27,6 @@ declare module 'atom-package-deps' {
 }
 
 declare module 'atom-linter' {
-  declare function findFile(filePath: string, fileName: string): ?string;
+  declare function find(filePath: string, fileName: string): ?string;
   declare function exec(executable: string, args?: Array<string>, config?: Object): Promise<string>;
 }
