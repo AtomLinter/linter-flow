@@ -6,7 +6,6 @@
   "homepage": "https://github.com/AtomLinter/linter-flow",
   "author": "Naman Goel",
   "license": "MIT",
-  "activationCommands": [],
   "engines": {
     "atom": ">=1.0.0"
   },
