@@ -15,7 +15,6 @@ declare class CompositeDisposableClass {
   dispose(): void;
 }
 
-
 declare module atom {
   declare var Range: any;
   declare var CompositeDisposable: any;
