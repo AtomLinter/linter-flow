@@ -17,7 +17,8 @@ describe('Flow provider for Linter', () => {
         return lint(editor).then(messages => {
           expect(messages.length).toEqual(1);
           expect(messages[0].type).toEqual('Error');
-          expect(messages[0].text).toEqual('return undefined This type is incompatible with number');
+          expect(messages[0].text)
+            .toEqual('return undefined This type is incompatible with number');
           expect(messages[0].filePath).toMatch(/.+constructor\.js$/);
           expect(messages[0].trace.length).toEqual(2);
           expect(messages[0].range).toEqual({
