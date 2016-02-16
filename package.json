@@ -29,7 +29,7 @@
     }
   },
   "devDependencies": {
-    "babel-eslint": "^4.1.5",
+    "babel-eslint": "^5.0.0",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^5.0.0"
   }
