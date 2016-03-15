@@ -9,9 +9,7 @@ describe('Flow provider for Linter', () => {
 
   beforeEach(() => {
     waitsForPromise(() =>
-      atom.packages.activatePackage('linter-flow').then(() => {
-        atom.config.set('linter-flow.enableAll', true);
-      })
+      atom.packages.activatePackage('linter-flow')
     );
   });
 
