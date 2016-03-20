@@ -1,4 +1,5 @@
 /* eslint-disable */
+/* @flow */
 
 declare var atom: Object;
 
@@ -15,7 +16,7 @@ declare class CompositeDisposableClass {
   dispose(): void;
 }
 
-declare module atom {
+declare module 'atom' {
   declare var Range: any;
   declare var CompositeDisposable: any;
   declare var config: Config;

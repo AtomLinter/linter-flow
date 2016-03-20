@@ -1,12 +1,10 @@
 [ignore]
-.*/node_modules/.*
-.*/spec/.*
-.*/declarations/.*
+.*/node_modules/sb-promisify/.*
 
 [include]
 
 [libs]
-.*/declarations/modules\.js
+./declarations/modules.js
 
 [options]
 unsafe.enable_getters_and_setters=true
