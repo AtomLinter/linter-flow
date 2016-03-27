@@ -1,3 +1,8 @@
+## v5.1.0
+
+- Reverted the flow comment detection as the new implementation was buggy.
+- Throttle the number of atom notifications, and limit console logs to dev mode.
+
 ## v5.0.0
 
 #### Bug Fixes
