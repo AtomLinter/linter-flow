@@ -32,6 +32,6 @@
     "babel-eslint": "6.0.2",
     "eslint": "^2.4.0",
     "eslint-config-airbnb": "^6.1.0",
-    "eslint-plugin-react": "^4.2.3"
+    "eslint-plugin-react": "^5.0.1"
   }
 }
