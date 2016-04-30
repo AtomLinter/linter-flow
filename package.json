@@ -28,6 +28,13 @@
       }
     }
   },
+  "consumedServices": {
+    "busy-signal": {
+      "versions": {
+        "1.0.0": "consumeBusySignal"
+      }
+    }
+  },
   "devDependencies": {
     "babel-eslint": "6.0.2",
     "eslint": "^2.4.0",
