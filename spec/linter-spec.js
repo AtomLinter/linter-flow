@@ -18,11 +18,11 @@ describe('Flow provider for Linter', () => {
       atom.workspace.open(constructorPath).then(editor =>
         lint(editor).then(messages => {
           expect(messages.length).toEqual(1);
-          expect(messages[0].type).toEqual('Error');
+          expect(messages[0].type).toEqual('Warning');
           expect(messages[0].text)
-            .toEqual('return undefined This type is incompatible with number');
+            .toEqual('number This type is incompatible with an implicitly-returned undefined.');
           expect(messages[0].filePath).toMatch(/.+constructor\.js$/);
-          expect(messages[0].trace.length).toEqual(2);
+          expect(messages[0].trace.length).toEqual(1);
           expect(messages[0].range).toEqual({
             start: { row: 6, column: 18 },
             end: { row: 6, column: 24 },
@@ -37,7 +37,7 @@ describe('Flow provider for Linter', () => {
       atom.workspace.open(arrayPath).then(editor =>
         lint(editor).then(messages => {
           expect(messages.length).toEqual(1);
-          expect(messages[0].type).toEqual('Error');
+          expect(messages[0].type).toEqual('Warning');
           expect(messages[0].text).toEqual('number This type is incompatible with string');
           expect(messages[0].filePath).toMatch(/.+Arrays\.js$/);
           expect(messages[0].trace.length).toEqual(2);
