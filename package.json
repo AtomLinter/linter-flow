@@ -7,11 +7,11 @@
   "author": "Naman Goel",
   "license": "MIT",
   "engines": {
-    "atom": ">=1.0.0"
+    "atom": ">=1.0.0 <2.0.0"
   },
   "main": "./lib/index.js",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint . && flow check",
     "test": "apm test"
   },
   "dependencies": {
@@ -29,10 +29,26 @@
     }
   },
   "devDependencies": {
-    "babel-eslint": "6.0.2",
-    "eslint": "^2.4.0",
-    "eslint-config-airbnb": "^6.1.0",
-    "eslint-plugin-react": "^4.2.3",
+    "babel-eslint": "^6.0.4",
+    "eslint": "^2.10.1",
+    "eslint-config-airbnb-base": "^3.0.1",
+    "eslint-plugin-import": "^1.8.0",
     "flow-bin": "^0.25.0"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "parser": "babel-eslint",
+    "env": {
+      "es6": true,
+      "node": true
+    },
+    "globals": {
+      "atom": true
+    },
+    "rules": {
+      "no-console": 0,
+      "global-require": 0,
+      "import/no-unresolved": [2, {"ignore": ["atom"]}]
+    }
   }
 }

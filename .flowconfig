@@ -1,5 +1,6 @@
 [ignore]
 .*/node_modules/sb-promisify/.*
+.*/spec/.*
 
 [include]
 
