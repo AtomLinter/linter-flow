@@ -11,7 +11,7 @@
   },
   "main": "./lib/index.js",
   "scripts": {
-    "lint": "eslint .",
+    "lint": "eslint . && flow check",
     "test": "apm test"
   },
   "dependencies": {
