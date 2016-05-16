@@ -33,6 +33,6 @@
     "eslint": "^2.4.0",
     "eslint-config-airbnb": "^6.1.0",
     "eslint-plugin-react": "^4.2.3",
-    "flow-bin": "^0.24.2"
+    "flow-bin": "^0.25.0"
   }
 }
