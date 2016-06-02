@@ -30,3 +30,7 @@ declare module 'atom-linter' {
   declare function find(filePath: string, fileName: string): ?string;
   declare function exec(executable: string, args?: Array<string>, config?: Object): Promise<string>;
 }
+
+declare module 'lodash.flatten' {
+  declare var exports: <T>(array: Array<T | T[]>) => T[]
+};
