@@ -31,9 +31,9 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.0.4",
-    "eslint": "^2.10.1",
-    "eslint-config-airbnb-base": "^3.0.1",
-    "eslint-plugin-import": "^1.8.0",
+    "eslint": "^3.0.1",
+    "eslint-config-airbnb-base": "^4.0.0",
+    "eslint-plugin-import": "^1.10.2",
     "flow-bin": "^0.28.0"
   },
   "eslintConfig": {
@@ -47,8 +47,8 @@
       "atom": true
     },
     "rules": {
-      "no-console": 0,
-      "global-require": 0,
+      "no-console": "off",
+      "global-require": "off",
       "import/no-unresolved": [
         2,
         {
@@ -56,7 +56,8 @@
             "atom"
           ]
         }
-      ]
+      ],
+      "import/no-extraneous-dependencies": "off"
     }
   }
 }
