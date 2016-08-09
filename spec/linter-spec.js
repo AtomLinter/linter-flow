@@ -10,6 +10,13 @@ describe('Flow provider for Linter', () => {
     waitsForPromise(() =>
       atom.packages.activatePackage('linter-flow')
     );
+    /**
+     *  Note: Windows seems unable to use a globally installed version, if
+     *  testing locally, fix the path below and uncomment the line to get the
+     *  specs to work for you. Make sure you restore any changes before
+     *  committing.
+     */
+    // atom.config.set('linter-flow.executablePath', 'C:\\path\\to\\flow.cmd');
   });
 
   it('constructor: incompatible type', () => {
