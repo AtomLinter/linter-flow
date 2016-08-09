@@ -1,6 +1,7 @@
 'use babel';
 
 import * as path from 'path';
+
 const constructorPath = path.join(__dirname, 'test', 'constructor', 'constructor.js');
 const arrayPath = path.join(__dirname, 'test', 'arrays', 'Arrays.js');
 const lint = require('../lib/index.js').provideLinter().lint;
