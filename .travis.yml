@@ -1,31 +1,50 @@
-before_install:
-  - brew update
+# Project specific config
+
+# Installed for linting the project
+language: node_js
+
+matrix:
+  include:
+    - os: linux
+      node_js: "6"
+      env: ATOM_CHANNEL=stable
+
+    - os: linux
+      node_js: "6"
+      env: ATOM_CHANNEL=beta
+
+    - os: osx
+      node_js: "6"
+      env: ATOM_CHANNEL=stable
+
 install:
-  - brew install flow
+  - npm install -g flow-bin
 
-language: generic
-os:
-  - osx
+# Run flow to lint the package
+before_script:
+  - flow check
 
-branches:
-  only:
-    - master
-git:
-  depth: 10
+# Generic setup follows
+script: 'curl -Ls https://github.com/Arcanemagus/ci/raw/atomlinter/build-package.sh | sh'
 
 notifications:
   email:
     on_success: never
     on_failure: change
 
-env:
-  global:
-    - APM_TEST_PACKAGES=""
-  matrix:
-    - ATOM_CHANNEL=stable
-    - ATOM_CHANNEL=beta
+branches:
+  only:
+    - master
 
-before_script:
-  - flow check
+git:
+  depth: 10
 
-script: 'curl -s https://raw.githubusercontent.com/atom/ci/master/build-package.sh | sh'
+sudo: false
+
+addons:
+  apt:
+    packages:
+    - build-essential
+    - git
+    - libgnome-keyring-dev
+    - fakeroot
