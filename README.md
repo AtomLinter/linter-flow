@@ -17,11 +17,9 @@ You can configure linter-flow by editing ~/.atom/config.cson (choose Open Your C
 ```cson
 'linter-flow':
   'executablePath': 'flow'
-  'enableAll': false
 ```
 
 * `executablePath`: Absolute path to the Flow executable on your system.
-* `enableAll`: Typecheck all files, not just file containing `@flow`.
 
 ### Why not X?
 
