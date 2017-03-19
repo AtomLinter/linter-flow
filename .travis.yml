@@ -1,6 +1,4 @@
 # Project specific config
-
-# Installed for linting the project
 language: node_js
 
 matrix:
@@ -10,22 +8,21 @@ matrix:
       env: ATOM_CHANNEL=stable
 
     - os: linux
-      node_js: "6"
+      node_js: "7"
       env: ATOM_CHANNEL=beta
-
-    - os: osx
-      node_js: "6"
-      env: ATOM_CHANNEL=stable
 
 install:
   - npm install -g flow-bin
 
-# Run flow to lint the package
-before_script:
-  - flow check
+# The linting done in the Atom script doesn't handle flow
+after_script:
+  - npm run lint
 
 # Generic setup follows
-script: 'curl -Ls https://github.com/Arcanemagus/ci/raw/atomlinter/build-package.sh | sh'
+script:
+  - curl -s -O https://raw.githubusercontent.com/atom/ci/master/build-package.sh
+  - chmod u+x build-package.sh
+  - ./build-package.sh
 
 notifications:
   email:
@@ -35,6 +32,7 @@ notifications:
 branches:
   only:
     - master
+    - /^greenkeeper/.*$/
 
 git:
   depth: 10
