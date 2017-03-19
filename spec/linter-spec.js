@@ -9,7 +9,7 @@ const lint = require('../lib/index.js').provideLinter().lint;
 describe('Flow provider for Linter', () => {
   beforeEach(() => {
     waitsForPromise(() =>
-      atom.packages.activatePackage('linter-flow')
+      atom.packages.activatePackage('linter-flow'),
     );
     /**
      *  Note: Windows seems unable to use a globally installed version, if
@@ -21,57 +21,43 @@ describe('Flow provider for Linter', () => {
   });
 
   it('constructor: incompatible type', () => {
+    const msgText = 'number This type is incompatible with an implicitly-returned undefined.';
     waitsForPromise(() =>
       atom.workspace.open(constructorPath).then(editor =>
-        lint(editor).then(messages => {
+        lint(editor).then((messages) => {
           expect(messages.length).toBe(1);
           expect(messages[0].type).toBe('Warning');
-          expect(messages[0].text)
-            .toBe('number This type is incompatible with an implicitly-returned undefined.');
+          expect(messages[0].text).toBe(msgText);
           expect(messages[0].filePath).toBe(constructorPath);
           expect(messages[0].trace.length).toBe(0);
-          expect(messages[0].range).toEqual({
-            start: { row: 6, column: 18 },
-            end: { row: 6, column: 24 },
-          });
-        })
-      )
+          expect(messages[0].range).toEqual([[6, 18], [6, 24]]);
+        }),
+      ),
     );
   });
 
   it('arrays: incompatible type', () => {
+    const msgText = 'number This type is incompatible with the expected param type of string';
     waitsForPromise(() =>
       atom.workspace.open(arrayPath).then(editor =>
-        lint(editor).then(messages => {
+        lint(editor).then((messages) => {
           expect(messages.length).toBe(2);
 
           expect(messages[0].type).toBe('Warning');
-          expect(messages[0].text).toBe('number This type is incompatible with string');
+          expect(messages[0].text).toBe(msgText);
           expect(messages[0].filePath).toBe(arrayPath);
           expect(messages[0].trace.length).toBe(1);
-          expect(messages[0].trace[0].range).toEqual({
-            start: { row: 3, column: 16 },
-            end: { row: 3, column: 22 },
-          });
-          expect(messages[0].range).toEqual({
-            start: { row: 9, column: 4 },
-            end: { row: 9, column: 8 },
-          });
+          expect(messages[0].trace[0].range).toEqual([[3, 16], [3, 22]]);
+          expect(messages[0].range).toEqual([[9, 4], [9, 8]]);
 
           expect(messages[1].type).toBe('Warning');
-          expect(messages[0].text).toBe('number This type is incompatible with string');
-          expect(messages[0].filePath).toBe(arrayPath);
-          expect(messages[0].trace.length).toBe(1);
-          expect(messages[1].trace[0].range).toEqual({
-            start: { row: 9, column: 4 },
-            end: { row: 9, column: 8 },
-          });
-          expect(messages[1].range).toEqual({
-            start: { row: 3, column: 16 },
-            end: { row: 3, column: 22 },
-          });
-        })
-      )
+          expect(messages[1].text).toBe(msgText);
+          expect(messages[1].filePath).toBe(arrayPath);
+          expect(messages[1].trace.length).toBe(1);
+          expect(messages[1].trace[0].range).toEqual([[9, 4], [9, 8]]);
+          expect(messages[1].range).toEqual([[3, 16], [3, 22]]);
+        }),
+      ),
     );
   });
 });

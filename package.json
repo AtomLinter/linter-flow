@@ -15,7 +15,7 @@
     "test": "apm test"
   },
   "dependencies": {
-    "atom-linter": "^7.0.0",
+    "atom-linter": "^9.0.0",
     "atom-package-deps": "^4.0.1",
     "lodash.flatten": "^4.2.0"
   },
@@ -30,11 +30,11 @@
     }
   },
   "devDependencies": {
-    "babel-eslint": "^6.0.4",
-    "eslint": "^3.2.2",
-    "eslint-config-airbnb-base": "^7.0.0",
-    "eslint-plugin-import": "^1.12.0",
-    "flow-bin": "^0.30.0"
+    "babel-eslint": "^7.1.0",
+    "eslint": "^3.16.1",
+    "eslint-config-airbnb-base": "^11.1.1",
+    "eslint-plugin-import": "^2.0.1",
+    "flow-bin": "^0.42.0"
   },
   "eslintConfig": {
     "extends": "airbnb-base",
