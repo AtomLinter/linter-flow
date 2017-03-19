@@ -9,7 +9,7 @@ const lint = require('../lib/index.js').provideLinter().lint;
 describe('Flow provider for Linter', () => {
   beforeEach(() => {
     waitsForPromise(() =>
-      atom.packages.activatePackage('linter-flow')
+      atom.packages.activatePackage('linter-flow'),
     );
     /**
      *  Note: Windows seems unable to use a globally installed version, if
@@ -23,7 +23,7 @@ describe('Flow provider for Linter', () => {
   it('constructor: incompatible type', () => {
     waitsForPromise(() =>
       atom.workspace.open(constructorPath).then(editor =>
-        lint(editor).then(messages => {
+        lint(editor).then((messages) => {
           expect(messages.length).toBe(1);
           expect(messages[0].type).toBe('Warning');
           expect(messages[0].text)
@@ -34,15 +34,15 @@ describe('Flow provider for Linter', () => {
             start: { row: 6, column: 18 },
             end: { row: 6, column: 24 },
           });
-        })
-      )
+        }),
+      ),
     );
   });
 
   it('arrays: incompatible type', () => {
     waitsForPromise(() =>
       atom.workspace.open(arrayPath).then(editor =>
-        lint(editor).then(messages => {
+        lint(editor).then((messages) => {
           expect(messages.length).toBe(2);
 
           expect(messages[0].type).toBe('Warning');
@@ -70,8 +70,8 @@ describe('Flow provider for Linter', () => {
             start: { row: 3, column: 16 },
             end: { row: 3, column: 22 },
           });
-        })
-      )
+        }),
+      ),
     );
   });
 });
