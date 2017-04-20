@@ -1,5 +1,10 @@
 # Changelog
 
+## v5.6.0
+
+*   Update dependencies
+*   Update `flow-bin` to v0.44.0
+
 ## v5.5.1
 
 *   Update dependencies
