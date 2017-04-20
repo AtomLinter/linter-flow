@@ -26,7 +26,7 @@ describe('Flow provider for Linter', () => {
       atom.workspace.open(constructorPath).then(editor =>
         lint(editor).then((messages) => {
           expect(messages.length).toBe(1);
-          expect(messages[0].type).toBe('Warning');
+          expect(messages[0].type).toBe('Error');
           expect(messages[0].text).toBe(msgText);
           expect(messages[0].filePath).toBe(constructorPath);
           expect(messages[0].trace.length).toBe(0);
@@ -43,14 +43,14 @@ describe('Flow provider for Linter', () => {
         lint(editor).then((messages) => {
           expect(messages.length).toBe(2);
 
-          expect(messages[0].type).toBe('Warning');
+          expect(messages[0].type).toBe('Error');
           expect(messages[0].text).toBe(msgText);
           expect(messages[0].filePath).toBe(arrayPath);
           expect(messages[0].trace.length).toBe(1);
           expect(messages[0].trace[0].range).toEqual([[3, 16], [3, 22]]);
           expect(messages[0].range).toEqual([[9, 4], [9, 8]]);
 
-          expect(messages[1].type).toBe('Warning');
+          expect(messages[1].type).toBe('Error');
           expect(messages[1].text).toBe(msgText);
           expect(messages[1].filePath).toBe(arrayPath);
           expect(messages[1].trace.length).toBe(1);
