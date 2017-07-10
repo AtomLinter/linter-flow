@@ -8,7 +8,7 @@ matrix:
       env: ATOM_CHANNEL=stable
 
     - os: linux
-      node_js: "7"
+      node_js: "node"
       env: ATOM_CHANNEL=beta
 
 install:
