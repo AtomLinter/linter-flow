@@ -1,4 +1,4 @@
-# Project specific config
+### Project specific config ###
 language: node_js
 
 matrix:
@@ -8,7 +8,7 @@ matrix:
       env: ATOM_CHANNEL=stable
 
     - os: linux
-      node_js: "7"
+      node_js: "node"
       env: ATOM_CHANNEL=beta
 
 install:
@@ -18,7 +18,7 @@ install:
 after_script:
   - npm run lint
 
-# Generic setup follows
+### Generic setup follows ###
 script:
   - curl -s -O https://raw.githubusercontent.com/atom/ci/master/build-package.sh
   - chmod u+x build-package.sh
@@ -39,10 +39,12 @@ git:
 
 sudo: false
 
+dist: trusty
+
 addons:
   apt:
     packages:
     - build-essential
-    - git
-    - libgnome-keyring-dev
     - fakeroot
+    - git
+    - libsecret-1-dev
