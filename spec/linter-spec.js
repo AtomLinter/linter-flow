@@ -1,13 +1,16 @@
 'use babel';
 
 import * as path from 'path';
+// eslint-disable-next-line no-unused-vars
+import { it, fit, wait, beforeEach, afterEach } from 'jasmine-fix';
+
+const { lint } = require('../lib/index.js').provideLinter();
 
 const constructorPath = path.join(__dirname, 'test', 'constructor', 'constructor.js');
 const arrayPath = path.join(__dirname, 'test', 'arrays', 'Arrays.js');
-const { lint } = require('../lib/index.js').provideLinter();
 
 describe('Flow provider for Linter', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     waitsForPromise(() =>
       atom.packages.activatePackage('linter-flow'));
     /**
@@ -19,40 +22,38 @@ describe('Flow provider for Linter', () => {
     // atom.config.set('linter-flow.executablePath', 'C:\\path\\to\\flow.cmd');
   });
 
-  it('constructor: incompatible type', () => {
+  it('constructor: incompatible type', async () => {
+    const editor = await atom.workspace.open(constructorPath);
+    const messages = await lint(editor);
     const msgText = 'number This type is incompatible with an implicitly-returned undefined.';
-    waitsForPromise(() =>
-      atom.workspace.open(constructorPath).then(editor =>
-        lint(editor).then((messages) => {
-          expect(messages.length).toBe(1);
-          expect(messages[0].type).toBe('Error');
-          expect(messages[0].text).toBe(msgText);
-          expect(messages[0].filePath).toBe(constructorPath);
-          expect(messages[0].trace.length).toBe(0);
-          expect(messages[0].range).toEqual([[6, 18], [6, 24]]);
-        })));
+
+    expect(messages.length).toBe(1);
+    expect(messages[0].type).toBe('Error');
+    expect(messages[0].text).toBe(msgText);
+    expect(messages[0].filePath).toBe(constructorPath);
+    expect(messages[0].trace.length).toBe(0);
+    expect(messages[0].range).toEqual([[6, 18], [6, 24]]);
   });
 
-  it('arrays: incompatible type', () => {
+  it('arrays: incompatible type', async () => {
+    const editor = await atom.workspace.open(arrayPath);
+    const messages = await lint(editor);
     const msgText = 'number This type is incompatible with the expected param type of string';
-    waitsForPromise(() =>
-      atom.workspace.open(arrayPath).then(editor =>
-        lint(editor).then((messages) => {
-          expect(messages.length).toBe(2);
 
-          expect(messages[0].type).toBe('Error');
-          expect(messages[0].text).toBe(msgText);
-          expect(messages[0].filePath).toBe(arrayPath);
-          expect(messages[0].trace.length).toBe(1);
-          expect(messages[0].trace[0].range).toEqual([[3, 16], [3, 22]]);
-          expect(messages[0].range).toEqual([[9, 4], [9, 8]]);
+    expect(messages.length).toBe(2);
 
-          expect(messages[1].type).toBe('Error');
-          expect(messages[1].text).toBe(msgText);
-          expect(messages[1].filePath).toBe(arrayPath);
-          expect(messages[1].trace.length).toBe(1);
-          expect(messages[1].trace[0].range).toEqual([[9, 4], [9, 8]]);
-          expect(messages[1].range).toEqual([[3, 16], [3, 22]]);
-        })));
+    expect(messages[0].type).toBe('Error');
+    expect(messages[0].text).toBe(msgText);
+    expect(messages[0].filePath).toBe(arrayPath);
+    expect(messages[0].trace.length).toBe(1);
+    expect(messages[0].trace[0].range).toEqual([[3, 16], [3, 22]]);
+    expect(messages[0].range).toEqual([[9, 4], [9, 8]]);
+
+    expect(messages[1].type).toBe('Error');
+    expect(messages[1].text).toBe(msgText);
+    expect(messages[1].filePath).toBe(arrayPath);
+    expect(messages[1].trace.length).toBe(1);
+    expect(messages[1].trace[0].range).toEqual([[9, 4], [9, 8]]);
+    expect(messages[1].range).toEqual([[3, 16], [3, 22]]);
   });
 });
