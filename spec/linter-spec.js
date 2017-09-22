@@ -4,13 +4,12 @@ import * as path from 'path';
 
 const constructorPath = path.join(__dirname, 'test', 'constructor', 'constructor.js');
 const arrayPath = path.join(__dirname, 'test', 'arrays', 'Arrays.js');
-const lint = require('../lib/index.js').provideLinter().lint;
+const { lint } = require('../lib/index.js').provideLinter();
 
 describe('Flow provider for Linter', () => {
   beforeEach(() => {
     waitsForPromise(() =>
-      atom.packages.activatePackage('linter-flow'),
-    );
+      atom.packages.activatePackage('linter-flow'));
     /**
      *  Note: Windows seems unable to use a globally installed version, if
      *  testing locally, fix the path below and uncomment the line to get the
@@ -31,9 +30,7 @@ describe('Flow provider for Linter', () => {
           expect(messages[0].filePath).toBe(constructorPath);
           expect(messages[0].trace.length).toBe(0);
           expect(messages[0].range).toEqual([[6, 18], [6, 24]]);
-        }),
-      ),
-    );
+        })));
   });
 
   it('arrays: incompatible type', () => {
@@ -56,8 +53,6 @@ describe('Flow provider for Linter', () => {
           expect(messages[1].trace.length).toBe(1);
           expect(messages[1].trace[0].range).toEqual([[9, 4], [9, 8]]);
           expect(messages[1].range).toEqual([[3, 16], [3, 22]]);
-        }),
-      ),
-    );
+        })));
   });
 });
