@@ -1,5 +1,9 @@
 # linter-flow
 
+## HELP WANTED!
+
+I'm looking for contributors to help maintain this plug-in. I don't have the time I used to be able to keep this up-to-date, but I hate to let this languish.
+
 Lightweight alternative to Facebook's Flow plugin for [facebook/flow](http://flowtype.org/).
 
 ![linter-demo](https://naman.s3.amazonaws.com/linter-flow-plus/linter-flow-plus.gif)
