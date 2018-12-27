@@ -10,7 +10,7 @@ Lightweight alternative to Facebook's Flow plugin for [facebook/flow](http://flo
 
 ## Installation
 
-* Install [flow](http://flowtype.org/docs/getting-started.html#installing-flow)
+* Install [flow](https://flow.org/en/docs/install/)
 * `flow init`
 * `apm install linter-flow`
 
